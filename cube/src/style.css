@@ -1,79 +1,131 @@
+/* =========================
+   RESET E BASE GLOBAL
+   ========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* =========================
+   TIPOGRAFIA BASE (MOBILE FIRST)
+   ========================= */
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Cores base neutras */
+  color: #1f2933;
+  background-color: #ffffff;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  /* Melhor renderização */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+/* =========================
+   BODY E APP
+   ========================= */
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
+}
+
+/* App ocupa sempre toda a viewport */
+#app {
+  width: 100%;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* =========================
+   ELEMENTOS BASE
+   ========================= */
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
+
+img,
+canvas,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+/* Evita canvas quebrar layout */
+canvas {
+  outline: none;
+}
+
+/* =========================
+   HEADERS (ESCALA RESPONSIVA)
+   ========================= */
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+/* =========================
+   BOTÕES (TOUCH FRIENDLY)
+   ========================= */
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  font-size: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  border: none;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  touch-action: manipulation;
 }
 
-.card {
-  padding: 2em;
+/* =========================
+   ACESSIBILIDADE BÁSICA
+   ========================= */
+
+:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+/* =========================
+   MEDIA QUERIES (DESKTOP)
+   ========================= */
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@media (min-width: 768px) {
+  body {
+    font-size: 16px;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 17px;
   }
 }
