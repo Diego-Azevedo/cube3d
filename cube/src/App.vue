@@ -31,7 +31,7 @@
       <!-- Seção Home -->
       <section id="home" class="section">
         <!-- <Camera360/> -->
-        <h1>Home</h1>
+        <Home/>
       </section>
 
       <!-- Seção Quem somos -->
@@ -64,6 +64,7 @@
 
 <script setup>
 // import Camera360 from './components/Camera360.vue'
+import Home from './components/Home.vue'
 /**
  * Função para rolar suavemente até uma seção específica
  * @param {string} sectionId - ID da seção de destino
@@ -144,7 +145,6 @@ const scrollToSection = (sectionId) => {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
   box-sizing: border-box;
 }
 
