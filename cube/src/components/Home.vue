@@ -1,17 +1,25 @@
 <template>
   <section class="hero-section">
-    <!-- Camadas de fundo -->
     <div class="hero-bg">
-      <div class="bg-radial"></div>
-      <div class="bg-left"></div>
-      <div class="bg-right"></div>
+      <div class="bg-gradient-mesh"></div>
       <div class="bg-noise"></div>
     </div>
 
-    <!-- Conteúdo -->
-    <div class="hero-content">
-      <!-- Texto (foreground) -->
-      <div class="hero-text">
+    <div class="hero-container">
+
+      <!-- HERO VIDEO -->
+      <div class="hero-video">
+        <div class="video-glow"></div>
+
+        <div class="video-wrapper">
+          <video autoplay muted loop playsinline preload="metadata">
+            <source src="/video/works3.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+
+      <!-- HERO CONTENT -->
+      <div class="hero-content">
         <span class="hero-eyebrow">SOLUÇÕES DE SEGURANÇA</span>
 
         <h1>
@@ -29,146 +37,134 @@
         </button>
       </div>
 
-      <!-- Vídeo (background expandido) -->
-      <div class="hero-video-bg">
-        <video autoplay muted loop playsinline preload="metadata">
-          <source src="/video/works2.mp4" type="video/mp4" />
-        </video>
-      </div>
     </div>
   </section>
 </template>
 
-<script setup>
-/*
-  Componente puramente visual.
-*/
-</script>
-
-<style scoped>
-/* =====================
-   VARIÁVEIS DE MARCA
-   ===================== */
-.hero-section {
-  --bg-base: #000000;
-  --bg-secondary: #121212;
-
+<style>
+  .hero-section {
+  --bg-base: #00000036;
   --yellow-primary: #ba7928;
   --yellow-light: #f8dd73;
-  --yellow-dark: #ba7928;
-
-  --text-main: #f8dd73;
   --text-muted: #9ca3af;
-}
-
-/* =====================
-   CONTAINER PRINCIPAL
-   ===================== */
-.hero-section {
-  position: relative;
-  width: 100%;
-  height: 100vh;
   background: var(--bg-base);
+  position: relative;
   overflow: hidden;
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
 /* =====================
-   BACKGROUND LAYERS
+   BACKGROUND
    ===================== */
 .hero-bg {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 0;
 }
 
-/* Luz central */
-.bg-radial {
+.bg-gradient-mesh {
   position: absolute;
-  inset: -30%;
-  background: radial-gradient(
-    circle at 65% 50%,
-    rgba(248, 221, 115, 0.35),
-    rgba(0, 0, 0, 0.95) 60%
-  );
-  animation: pulse 10s ease-in-out infinite;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, #000, #000 70%);
 }
 
-/* Vinheta esquerda */
-.bg-left {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 40%;
-  height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.85),
-    transparent
-  );
-}
-
-/* Vinheta direita */
-.bg-right {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 40%;
-  height: 100%;
-  background: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0.6),
-    transparent
-  );
-}
-
-/* Ruído */
 .bg-noise {
   position: absolute;
   inset: 0;
-  background-image: url('/noise.png');
-  opacity: 0.04;
-  mix-blend-mode: overlay;
-  pointer-events: none;
+  opacity: 0.05;
 }
 
 /* =====================
-   CONTEÚDO
+   CONTAINER
    ===================== */
-.hero-content {
+.hero-container {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  max-width: 1440px;
+  padding: 120px 2rem 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* =====================
-   TEXTO (SEMPRE NA FRENTE)
+   VIDEO HERO
    ===================== */
-.hero-text {
+.hero-video {
   position: relative;
-  z-index: 3;
-  max-width: 640px;
-  color: var(--text-main);
+  max-width: 100%;
+  max-height: 30%;
+  margin-bottom: 5rem;
+}
+
+.video-glow {
+  position: absolute;
+  inset: -10%;
+  background: radial-gradient(
+    circle,
+    rgba(250, 138, 1, 0.247),
+    transparent 60%
+  );
+  filter: blur(120px);
+  z-index: 0;
+}
+
+.video-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  max-height: 150%;
+  margin: 0 auto;
+
+  
+  -webkit-mask-image: 
+    radial-gradient(ellipse at center, black 15%, transparent 85%),
+    linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%),
+    linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+
+  mask-image: 
+    radial-gradient(ellipse at center, black 15%, transparent 85%),
+    linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%),
+    linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.video-wrapper video {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  mix-blend-mode: screen;
+}
+
+/* =====================
+   CONTENT
+   ===================== */
+.hero-content {
+  text-align: center;
+  max-width: 760px;
 }
 
 .hero-eyebrow {
+  display: block;
   font-size: 0.75rem;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: var(--yellow-light);
+  margin-bottom: 1.5rem;
 }
 
-.hero-text h1 {
-  margin: 1rem 0;
-  font-size: clamp(3rem, 6vw, 6rem);
+.hero-content h1 {
+  font-size: clamp(3rem, 5vw, 5.5rem);
   line-height: 1.05;
+  color: var(--yellow-light);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
 }
 
-.hero-text h1 span {
+.hero-content h1 span {
   background: linear-gradient(
     90deg,
     var(--yellow-light),
@@ -178,97 +174,60 @@
   -webkit-text-fill-color: transparent;
 }
 
-.hero-text p {
-  max-width: 480px;
+.hero-content p {
+  font-size: 1.125rem;
+  line-height: 1.6;
   color: var(--text-muted);
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 /* =====================
-   BOTÃO
+   BUTTON
    ===================== */
 .hero-button {
   background: linear-gradient(
     135deg,
     var(--yellow-primary),
-    var(--yellow-dark)
+    var(--yellow-light)
   );
   color: #111;
   font-weight: 600;
-  padding: 0.85rem 1.9rem;
+  padding: 1rem 3rem;
   border-radius: 999px;
+  border: none;
+  cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hero-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(216, 164, 51, 0.45);
+  box-shadow: 0 12px 35px rgba(186, 121, 40, 0.45);
 }
 
 /* =====================
-   VÍDEO COMO BACKGROUND PARCIAL
+   MOBILE
    ===================== */
-   .hero-video-bg {
-    position: absolute;
-    inset: -15%;
-
-    z-index: 2;
-    overflow: hidden;
-    border-radius: 1.5rem;
-    pointer-events: none;
-
-    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9);
+@media (max-width: 768px) {
+  .hero-container {
+    padding-top: 90px;
   }
 
-
-.hero-video-bg video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Fade para legibilidade do texto */
-.hero-video-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0.0),
-    rgba(0, 0, 0, 0.8)
-  );
-}
-
-/* =====================
-   ANIMAÇÃO
-   ===================== */
-@keyframes pulse {
-  0% { opacity: 0.35; }
-  50% { opacity: 0.5; }
-  100% { opacity: 0.35; }
-}
-
-/* =====================
-   RESPONSIVO
-   ===================== */
-   @media (max-width: 900px) {
-  .hero-video-bg {
-    inset: auto 0;
-    top: 50%;
-    transform: translateY(-50%);
-
-    height: 80vh;
-    max-height: 80vh;
+  .video-wrapper {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      black 30%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      black 30%,
+      transparent 100%
+    );
   }
 
-  .hero-text {
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  .hero-text p {
-    margin-left: auto;
-    margin-right: auto;
+  .hero-content h1 {
+    font-size: 3rem;
   }
 }
+
 </style>
