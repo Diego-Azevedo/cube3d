@@ -7,7 +7,6 @@
 
     <div class="hero-container">
 
-      <!-- HERO VIDEO -->
       <div class="hero-video">
         <div class="video-glow"></div>
 
@@ -18,7 +17,6 @@
         </div>
       </div>
 
-      <!-- HERO CONTENT -->
       <div class="hero-content">
         <span class="hero-eyebrow">SOLUÇÕES DE SEGURANÇA</span>
 
@@ -41,17 +39,22 @@
   </section>
 </template>
 
-<style>
-  .hero-section {
-  --bg-base: #00000036;
+<style scoped>
+.hero-section {
+  --bg-base: #000000; /* Ajustado para preto sólido para evitar transparência indesejada */
   --yellow-primary: #ba7928;
   --yellow-light: #f8dd73;
   --text-muted: #9ca3af;
+  
   background: var(--bg-base);
   position: relative;
   overflow: hidden;
   display: flex;
   justify-content: center;
+  
+  /* MUDANÇA 1: Forçar altura da viewport no desktop */
+  height: 100vh;
+  min-height: 700px; /* Evita quebra em telas muito achatadas */
 }
 
 /* =====================
@@ -66,7 +69,7 @@
 .bg-gradient-mesh {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 30%, #000, #000 70%);
+  background: radial-gradient(circle at 50% 30%, #1a1a1a, #000 70%);
 }
 
 .bg-noise {
@@ -83,10 +86,15 @@
   z-index: 2;
   width: 100%;
   max-width: 1440px;
-  padding: 120px 2rem 80px;
+  
+  /* MUDANÇA 2: Redução drástica dos paddings verticais */
+  padding: 80px 2rem 40px; 
+  
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Garante centralização vertical */
+  height: 100%; /* Ocupa a altura da section */
 }
 
 /* =====================
@@ -94,9 +102,16 @@
    ===================== */
 .hero-video {
   position: relative;
-  max-width: 100%;
-  max-height: 30%;
-  margin-bottom: 5rem;
+  width: 100%;
+  max-width: 1000px; /* Levemente reduzido para não estourar lateralmente */
+  
+  /* MUDANÇA 3: Altura controlada e Margem Negativa */
+  height: 45vh; /* Ocupa no máximo 45% da altura da tela */
+  margin-bottom: -10vh; /* Puxa o texto para CIMA do vídeo (overlap) */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .video-glow {
@@ -104,30 +119,28 @@
   inset: -10%;
   background: radial-gradient(
     circle,
-    rgba(250, 138, 1, 0.247),
+    rgba(250, 138, 1, 0.2),
     transparent 60%
   );
-  filter: blur(120px);
+  filter: blur(80px);
   z-index: 0;
 }
 
 .video-wrapper {
   position: relative;
   z-index: 1;
-  max-width: 1100px;
-  max-height: 150%;
-  margin: 0 auto;
-
+  width: 100%;
+  height: 100%; /* Respeita a altura do pai (.hero-video) */
   
   -webkit-mask-image: 
     radial-gradient(ellipse at center, black 15%, transparent 85%),
     linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%),
-    linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+    linear-gradient(to bottom, black 0%, black 50%, transparent 100%); /* Fade mais agressivo embaixo */
 
   mask-image: 
     radial-gradient(ellipse at center, black 15%, transparent 85%),
     linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%),
-    linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+    linear-gradient(to bottom, black 0%, black 50%, transparent 100%);
 
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
@@ -135,8 +148,8 @@
 
 .video-wrapper video {
   width: 100%;
-  display: block;
-  object-fit: cover;
+  height: 100%;
+  object-fit: cover; /* Garante que preencha a área */
   mix-blend-mode: screen;
 }
 
@@ -146,6 +159,8 @@
 .hero-content {
   text-align: center;
   max-width: 760px;
+  position: relative;
+  z-index: 10; /* Garante que fique SOBRE o vídeo */
 }
 
 .hero-eyebrow {
@@ -153,14 +168,16 @@
   font-size: 0.75rem;
   letter-spacing: 0.18em;
   color: var(--yellow-light);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8); /* Legibilidade sobre o vídeo */
 }
 
 .hero-content h1 {
-  font-size: clamp(3rem, 5vw, 5.5rem);
+  /* Clamp ajustado para desktop */
+  font-size: clamp(2.5rem, 4.5vw, 4.5rem); 
   line-height: 1.05;
   color: var(--yellow-light);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   font-weight: 700;
 }
 
@@ -176,9 +193,9 @@
 
 .hero-content p {
   font-size: 1.125rem;
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--text-muted);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 /* =====================
@@ -192,7 +209,7 @@
   );
   color: #111;
   font-weight: 600;
-  padding: 1rem 3rem;
+  padding: 0.8rem 2.5rem; /* Levemente menor para economizar espaço */
   border-radius: 999px;
   border: none;
   cursor: pointer;
@@ -208,8 +225,20 @@
    MOBILE
    ===================== */
 @media (max-width: 768px) {
+  .hero-section {
+    height: auto; /* Devolve altura automática no mobile */
+    min-height: 100vh;
+  }
+
   .hero-container {
-    padding-top: 90px;
+    padding: 90px 2rem 60px; /* Mantém o padding original do mobile */
+    justify-content: flex-start;
+  }
+
+  .hero-video {
+    height: auto;
+    max-height: 35vh;
+    margin-bottom: 5rem; /* No mobile, talvez você queira menos overlap ou nenhum */
   }
 
   .video-wrapper {
@@ -226,8 +255,7 @@
   }
 
   .hero-content h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
 }
-
 </style>
