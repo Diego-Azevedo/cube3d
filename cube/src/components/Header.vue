@@ -63,7 +63,7 @@ const isScrolled = ref(false);
 
 const menuItems = [
   { id: 'home', label: 'Home' },
-  { id: 'quem-somos', label: 'Quem somos' },
+  { id: 'quem-somos', label: 'Empresa' },
   { id: 'nossos-servicos', label: 'Serviços' },
   { id: 'tecnologia', label: 'Tecnologia' },
   { id: 'depoimentos', label: 'Depoimentos' },

@@ -15,11 +15,8 @@
         </div>
       </section>
 
-      <section id="nossos-servicos" class="section">
-        <div class="section-content">
-          <h1>Nossos Serviços</h1>
-          <p>Conteúdo da seção Nossos Serviços</p>
-        </div>
+      <section id="nossos-servicos" class="section services-bg">
+        <Services />
       </section>
 
       <section id="tecnologia" class="section">
@@ -49,6 +46,7 @@
 <script setup>
 import Header from './components/Header.vue'
 import Home from './components/Home.vue'
+import Services from './components/Services.vue'
 </script>
 
 <style>
