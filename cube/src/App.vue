@@ -20,10 +20,7 @@
       </section>
 
       <section id="tecnologia" class="section">
-        <div class="section-content">
-          <h1>Tecnologia</h1>
-          <p>Conteúdo da seção Tecnologia</p>
-        </div>
+        <Technology />
       </section>
 
       <section id="depoimentos" class="section">
@@ -47,6 +44,14 @@
 import Header from './components/Header.vue'
 import Home from './components/Home.vue'
 import Services from './components/Services.vue'
+import Technology from './components/Technology.vue'
+import { onMounted } from 'vue';
+
+onMounted(() => {
+  window.addEventListener('hashchange', () => {
+    history.replaceState(null, null, window.location.pathname);
+  }, false);
+});
 </script>
 
 <style>

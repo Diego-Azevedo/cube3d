@@ -32,7 +32,7 @@
           </div>
 
           <div class="card-footer">
-            <a href="#" class="action-link">Detalhes <span>→</span></a>
+            <a :href="'#tech-' + service.id" class="action-link">Detalhes <span>→</span></a>
           </div>
         </div>
       </div>
