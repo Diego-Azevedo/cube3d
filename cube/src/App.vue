@@ -9,10 +9,7 @@
       </section>
 
       <section id="quem-somos" class="section">
-        <div class="section-content">
-          <h1>Quem somos</h1>
-          <p>Conteúdo da seção Quem somos</p>
-        </div>
+          <Enterprise />
       </section>
 
       <section id="nossos-servicos" class="section services-bg">
@@ -41,6 +38,7 @@
 </template>
 
 <script setup>
+import Enterprise from './components/Enterprise.vue';
 import Header from './components/Header.vue'
 import Home from './components/Home.vue'
 import Services from './components/Services.vue'
