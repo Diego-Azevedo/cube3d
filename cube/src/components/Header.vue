@@ -10,7 +10,7 @@
         />
         <div class="brand-name">
           <span class="brand-primary">WORKS</span>
-          <span class="brand-secondary">SEGURANÇA</span>
+          <span class="brand-secondary">SISTEMAS</span>
         </div>
       </div>
 
@@ -66,7 +66,6 @@ const menuItems = [
   { id: 'quem-somos', label: 'Empresa' },
   { id: 'nossos-servicos', label: 'Serviços' },
   { id: 'tecnologia', label: 'Tecnologia' },
-  { id: 'depoimentos', label: 'Depoimentos' },
   { id: 'contato', label: 'Contato' },
 ];
 
@@ -271,7 +270,6 @@ onUnmounted(() => {
 .mobile-nav-list li:nth-child(3) { animation-delay: 0.3s; }
 .mobile-nav-list li:nth-child(4) { animation-delay: 0.4s; }
 .mobile-nav-list li:nth-child(5) { animation-delay: 0.5s; }
-.mobile-nav-list li:nth-child(6) { animation-delay: 0.6s; }
 
 .mobile-nav-list a {
   color: #fff;

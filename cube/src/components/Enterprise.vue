@@ -22,10 +22,6 @@
             analógicos, com arquitetura bem definida e acompanhamento contínuo. Todas as decisões técnicas são baseadas em experiência prática de campo, garantindo
             que a tecnologia entregue funcione de forma confiável ao longo do tempo.
           </p>
-
-          <div class="actions">
-            <button class="btn-primary">Solicitar Consultoria</button>
-          </div>
         </div>
 
         <div class="segments-display">
@@ -37,16 +33,22 @@
               :key="index" 
               class="segment-card"
             >
-              <div class="card-bg" :style="{ backgroundImage: `url(${segment.image})` }"></div>
+              <div class="card-inner">
+                <div class="card-bg" :style="{ backgroundImage: `url(${segment.image})` }"></div>
 
-              <div class="segment-overlay"></div>
-              
-              <div class="segment-info">
-                <span class="segment-name">{{ segment.name }}</span>
-                <div class="segment-indicator"></div>
+                <div class="segment-overlay"></div>
+                
+                <div class="segment-info">
+                  <span class="segment-name">{{ segment.name }}</span>
+                  <div class="segment-indicator"></div>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-primary" @click="scrollToSection('#contato')">Contate com um especialista</button>
         </div>
       </div>
 
@@ -59,16 +61,26 @@ import imgResidencial from '../assets/segments/residence.jpg'
 import imgCondominium from '../assets/segments/condominium.jpg'
 import imgCam from '../assets/segments/cam.png'
 import imgFactory from '../assets/segments/factory.jpg'
+import imgWork from '../assets/segments/obra.png'
+import imgCar from '../assets/segments/carro.png'
+import imgParking from '../assets/segments/estacionamento.png'
 
 const segments = [
   { name: 'Residencial', image: imgResidencial },
   { name: 'Condomínios', image: imgCondominium },
   { name: 'Empresas e Comércios', image: imgCam },
   { name: 'Indústrias', image: imgFactory },
-  { name: 'Obras e Canteiros', image: imgResidencial },
-  { name: 'Estacionamentos', image: imgResidencial },
-  { name: 'Frotas e Veículos Corporativos', image: imgResidencial },
+  { name: 'Obras e Canteiros', image: imgWork },
+  { name: 'Estacionamentos', image: imgParking },
+  { name: 'Frotas e Veículos Corporativos', image: imgCar },
 ]
+
+const scrollToSection = (sectionId) => {
+  const element = document.querySelector(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 </script>
 
 <style scoped>
@@ -80,6 +92,9 @@ const segments = [
   align-items: center;
   padding: 120px 2rem;
   width: 100%;
+  /* Otimização: força renderização do background */
+  transform: translateZ(0);
+  will-change: background-color;
 }
 
 .content-container {
@@ -123,17 +138,26 @@ const segments = [
   max-width: 600px;
 }
 
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  /* margin-top: 2rem; */
+}
+
 .btn-primary {
   background: linear-gradient(135deg, #ba7928, #f8dd73);
   color: #000;
-  font-weight: 700;
-  padding: 1.2rem 2.5rem;
-  border-radius: 4px;
+  font-weight: 600;
+  padding: 0.8rem 2.5rem;
+  border-radius: 999px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  font-size: 0.85rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(186, 121, 40, 0.45);
 }
 
 /* --- Segmentos com Vídeo --- */
@@ -145,12 +169,18 @@ const segments = [
 
 .segment-card {
   position: relative;
-  height: 58px; /* Altura original estreita */
+  height: 58px;
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   cursor: pointer;
+  will-change: border-color;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .card-bg {
@@ -158,7 +188,7 @@ const segments = [
   inset: 0;
   background-size: cover;
   background-position: center;
-  transition: transform 0.6s ease, opacity 0.6s ease;
+  background-repeat: no-repeat;
 }
 
 .segment-overlay {
@@ -181,7 +211,6 @@ const segments = [
   font-size: 0.95rem;
   font-weight: 600;
   color: #fff;
-  transition: all 0.4s;
 }
 
 .segment-indicator {
@@ -189,35 +218,28 @@ const segments = [
   width: 0;
   background: #f8dd73;
   margin-left: 1.2rem;
-  transition: width 0.5s ease;
 }
 
-/* --- EXPANSÃO AO PASSAR O MOUSE --- */
+/* --- HOVER: Borda dourada --- */
 .segment-card:hover {
-  height: 160px; /* Aumentei a altura conforme solicitado */
-  border-color: #ba7928;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-}
-
-.segment-card:hover .card-bg {
-  transform: scale(1.08);
-  opacity: 0.7;
-}
-
-.segment-card:hover .segment-name {
-  color: #f8dd73;
-  transform: scale(1.1) translateX(10px);
-}
-
-.segment-card:hover .segment-indicator {
-  width: 60px;
+  border-color: rgba(186, 121, 40, 0.4);
 }
 
 /* Mobile */
 @media (max-width: 1024px) {
+  .enterprise-section {
+    padding-top: 0;
+    padding-bottom: 80px;
+  }
+
   .main-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
+  }
+
+  .actions {
+    margin-top: 2rem;
+    justify-content: center;
   }
 }
 </style>

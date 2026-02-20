@@ -30,7 +30,7 @@
           controle de acesso e gestão operacional.
         </p>
 
-        <button class="hero-button">
+        <button class="hero-button" @click="scrollToSection('#quem-somos')">
           Conhecer agora
         </button>
       </div>
@@ -231,7 +231,7 @@
   }
 
   .hero-container {
-    padding: 90px 2rem 60px; /* Mantém o padding original do mobile */
+    padding: 90px 2rem 80px; /* Padding-bottom uniformizado para 80px */
     justify-content: flex-start;
   }
 
@@ -257,5 +257,18 @@
   .hero-content h1 {
     font-size: 2.8rem;
   }
-}
+
+  .hero-content p {
+    margin-bottom: 5rem;
+  }
+  }
 </style>
+
+<script setup>
+const scrollToSection = (sectionId) => {
+  const element = document.querySelector(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+</script>

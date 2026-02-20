@@ -20,13 +20,6 @@
         <Technology />
       </section>
 
-      <section id="depoimentos" class="section">
-        <div class="section-content">
-          <h1>Depoimentos</h1>
-          <p>Conteúdo da seção Depoimentos</p>
-        </div>
-      </section>
-
       <section id="contato" class="section">
         <div class="section-content">
           <h1>Contato</h1>

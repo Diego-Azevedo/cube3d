@@ -1,15 +1,28 @@
 <template>
-  <section id="tecnologia">
+  <section id="tecnologia" class="technology-section">
+    
+    <Cftv />
 
-    <div id="tech-1" class="tech-detail-block"> 111111 </div>
+    <Monitoring />
 
-    <div id="tech-2" class="tech-detail-block"> 222222 </div>
-
-    <div id="tech-3" class="tech-detail-block"> 333333 </div>
+    <AccessControl />
 
   </section>
 </template>
 
-<style scoped>
+<script setup>
+  import Cftv from './technology/Cftv.vue'
+  import AccessControl from './technology/AccessControl.vue'
+  import Monitoring from './technology/Monitoring.vue'
+</script>
 
-</style>
+<style scoped>
+  .technology-section {
+    background-color: #000;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  </style>

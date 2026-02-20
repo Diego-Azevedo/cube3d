@@ -32,7 +32,7 @@
           </div>
 
           <div class="card-footer">
-            <a :href="'#tech-' + service.id" class="action-link">Detalhes <span>→</span></a>
+            <a :href="getServiceLink(service.id)" class="action-link" @click.prevent="scrollToSection(getServiceLink(service.id))">Detalhes <span>→</span></a>
           </div>
         </div>
       </div>
@@ -120,6 +120,23 @@ const services = [
     icon: IconProject
   }
 ];
+
+// Mapeia os IDs dos serviços para os IDs das seções de tecnologia
+const getServiceLink = (serviceId) => {
+  const linkMap = {
+    1: '#tech-1',        // CFTV
+    2: '#monitoramento', // Monitoramento
+    3: '#tech-2'         // Controle de Acesso
+  };
+  return linkMap[serviceId] || '#tecnologia';
+};
+
+const scrollToSection = (sectionId) => {
+  const element = document.querySelector(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 </script>
 
 <style scoped>
@@ -132,7 +149,7 @@ const services = [
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 4rem 2rem 2rem; /* Padding top maior para compensar Header fixo */
+  padding: 2rem 2rem 2rem; /* Padding top maior para compensar Header fixo */
 }
 
 .content-container {
@@ -294,7 +311,10 @@ const services = [
 @media (max-width: 1024px) {
   .services-section {
     height: auto; /* Remove altura fixa em tablets */
-    padding: 6rem 2rem;
+    padding-top: 0;
+    padding-bottom: 80px;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
   
   .services-grid {
@@ -306,9 +326,17 @@ const services = [
   .services-grid {
     grid-template-columns: 1fr; /* 1 coluna mobile */
   }
+
+  .section-header {
+    margin-top: 2rem;
+  }
   
   .section-header h2 {
     font-size: 1.8rem;
+  }
+
+  .text-gradient {
+    font-size: 35px;
   }
 }
 </style>
